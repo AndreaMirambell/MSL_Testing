@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    
+    stages{
+        
+        stage('Verificar logs'){
+            steps{
+                echo"Validando existencia de logs"
+                sh 'ls /Users/andreamirambell/Downloads | grep secure.log'
+                echo "Logs encontrados"
+            }
+        }
+        stage('Verificar script'){
+            steps{
+                echo "Validando existencia de script"
+                sh 'ls /Users/andreamirambell/Downloads | grep entregable2.py'
+                echo "Script encontrado"
+            }
+        }
+        
+        stage('Analizar logs'){
+            steps{
+                echo "Procediendo a ejecutar el script"
+                sh 'python3 /Users/andreamirambell/Downloads/entregable2.py'
+                echo "Terminó la ejecución"
+            }
+        }
+        
+    }
+}
